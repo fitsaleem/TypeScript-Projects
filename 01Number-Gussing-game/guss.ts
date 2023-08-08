@@ -6,13 +6,13 @@
 
 import * as prompt from 'prompt-sync';
 
-let target: number;
+let userGuss: number;
 let score = 0;
-let rounds = 10;
+let rounds = 5;
 let attempts = 0;
 let min = 1;
 let max = 100;
-let history: { target: number; attempts: number }[] = [];
+let history: { userGuss: number; attempts: number }[] = [];
 
 function getRandomNumber(): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -21,20 +21,20 @@ function getRandomNumber(): number {
 function startGame(): void {
   const ask = prompt({ sigint: true });
 
-  console.log(`Welcome to the Guess the Number Game!`);
-  console.log(`I'm thinking of a number between ${min} and ${max}.`);
-  console.log(`Can you guess it?`);
+  console.log(`Hello Welcome to the Guess the Number Game!`);
+  console.log(`I am thinking of a number between ${min} and ${max}.`);
+  console.log(`Can you guess it whihch number I think?`);
 
-  target = getRandomNumber();
+  userGuss = getRandomNumber();
   askQuestion(ask);
 }
 
 function askQuestion(ask: prompt.Prompt): void {
   if (rounds === 0) {
-    console.log(`Game Over! Your score is: ${score}`);
+    console.log(`  ahh Sorry Game Over! Your score is: ${score}`);
     console.log('Your successful attempts: ', history);
 
-    let answer = ask('Do you want to play again? (y/n) ');
+    let answer:string = ask('Do you want to play again game? (y/n) ');
     if (answer.toLowerCase() === 'y') {
       score = 0;
       rounds = 10;
@@ -45,19 +45,19 @@ function askQuestion(ask: prompt.Prompt): void {
     return;
   }
 
-  let answer = ask('Enter a number: ');
+  let answer:string = ask('Enter a number: ');
   let number = parseInt(answer);
 
-  if (number === target) {
+  if (number === userGuss) {
     console.log('Congratulations, you guessed the number!');
-    history.push({ target: target, attempts: attempts });
+    history.push({ userGuss: userGuss, attempts: attempts });
     score++;
-    target = getRandomNumber();
+    userGuss = getRandomNumber();
     attempts = 0;
   } else {
     attempts++;
     if (attempts % 3 === 0) {
-      console.log(`Hint: The target number is ${number < target ? 'greater' : 'less'} than your guess.`);
+      console.log(`Hint: The userGuss number is ${number < userGuss ? 'greater' : 'less'} than your guess.`);
     } else {
       console.log('Incorrect, try again!');
     }
@@ -117,12 +117,12 @@ startGame();
 // import * as readline from 'readline';
 
 // interface GameHistory {
-//   target: number;
+//   userGuss: number;
 //   attempts: number;
 // }
 
 // class GuessGame {
-//   private target: number;
+//   private userGuss: number;
 //   private score: number;
 //   private rounds: number;
 //   private attempts: number;
@@ -133,7 +133,7 @@ startGame();
 //   constructor(min = 1, max = 100, rounds = 10) {
 //     this.min = min;
 //     this.max = max;
-//     this.target = this.getRandomNumber();
+//     this.userGuss = this.getRandomNumber();
 //     this.score = 0;
 //     this.rounds = rounds;
 //     this.attempts = 0;
@@ -165,7 +165,7 @@ startGame();
 //         if (answer.toLowerCase() === 'y') {
 //           this.score = 0;
 //           this.rounds = 10;
-//           this.target = this.getRandomNumber();
+//           this.userGuss = this.getRandomNumber();
 //           this.attempts = 0;
 //           this.startGame();
 //         } else {
@@ -178,16 +178,16 @@ startGame();
 //     rl.question('Enter a number: ', (answer) => {
 //       const number = parseInt(answer);
 
-//       if (number === this.target) {
+//       if (number === this.userGuss) {
 //         console.log('Congratulations, you guessed the number!');
-//         this.history.push({ target: this.target, attempts: this.attempts });
+//         this.history.push({ userGuss: this.userGuss, attempts: this.attempts });
 //         this.score++;
-//         this.target = this.getRandomNumber();
+//         this.userGuss = this.getRandomNumber();
 //         this.attempts = 0;
 //       } else {
 //         this.attempts++;
 //         if (this.attempts % 3 === 0) {
-//           console.log(`Hint: The target number is ${number < this.target ? 'greater' : 'less'} than your guess.`);
+//           console.log(`Hint: The userGuss number is ${number < this.userGuss ? 'greater' : 'less'} than your guess.`);
 //         } else {
 //           console.log('Incorrect, try again!');
 //         }
