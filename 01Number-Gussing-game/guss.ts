@@ -72,46 +72,6 @@ startGame();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // wiht OOP
 
 // import * as readline from 'readline';
