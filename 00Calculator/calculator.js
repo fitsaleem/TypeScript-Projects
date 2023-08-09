@@ -43,7 +43,7 @@ rl.question("Enter first number: ", function (answer1) {
                     console.log("Result: ", divide(number1, number2));
                     break;
                 default:
-                    console.log("Invalid operation");
+                    console.log("Invalid operation.");
             }
             rl.close();
         });
