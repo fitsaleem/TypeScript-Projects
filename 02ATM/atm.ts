@@ -1,4 +1,4 @@
-import * as readline from './node_modules/readline';
+import * as readline from 'readline';
 import { v4 as uuidv4 } from 'uuid';
 
 // Create interface for user accounts
